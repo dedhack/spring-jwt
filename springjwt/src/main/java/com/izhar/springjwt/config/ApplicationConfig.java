@@ -46,7 +46,7 @@ public class ApplicationConfig {
 
     // for encrypting user password
     @Bean
-    private PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
