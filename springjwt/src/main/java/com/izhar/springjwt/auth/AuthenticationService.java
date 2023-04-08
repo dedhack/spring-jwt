@@ -46,6 +46,7 @@ public class AuthenticationService {
                 )
         );
         // since username and password is authenticated, then...
+        System.out.println("I'm here");
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow(); // TODO: to further handle this exception in the future
         var jwtToken = jwtService.generateToken(user);
