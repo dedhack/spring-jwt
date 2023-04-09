@@ -1,5 +1,7 @@
 package com.izhar.springjwt.auth;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +29,13 @@ public class AuthenticationController {
     ){
         return ResponseEntity.ok(service.authenticate(request));
 
+    }
+    @PostMapping("/refresh-token")
+    public void refreshToken(
+      HttpServlet request, // object where we can read the auth header, which holds the refresh token
+      HttpServletResponse response // object to send back the response to user
+    ){
+        service.refreshToken(request,response);
     }
 
 }

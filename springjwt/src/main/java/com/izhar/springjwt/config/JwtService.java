@@ -45,12 +45,26 @@ public class JwtService {
             Map<String, Object> extraClaims,
             UserDetails userDetails
     ){
+        return buildToken(extraClaims, userDetails, jwtExpiration);
+    }
+
+    public String generateRefreshToken(
+            UserDetails userDetails
+    ){
+        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
+    }
+
+    public String buildToken(
+            Map<String, Object> extraClaims,
+            UserDetails userDetails,
+            long expiration
+    ){
         return Jwts
                 .builder()
                 .setClaims(extraClaims) // set in the claims that's passed in
                 .setSubject(userDetails.getUsername()) // should be username or details that's unique. in this case, email was tied to username
                 .setIssuedAt(new Date(System.currentTimeMillis())) // set issue time to now
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) // so this sets expiration date 24 hours later
+                .setExpiration(new Date(System.currentTimeMillis() + expiration)) // so this sets expiration date 24 hours later
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact(); // compact will generate the token
     }
