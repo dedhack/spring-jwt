@@ -32,7 +32,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse
                 .builder()
-                .token(jwtToken)
+                .accessToken(jwtToken)
                 .build();
     }
 
@@ -52,7 +52,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse
                 .builder()
-                .token(jwtToken)
+                .accessToken(jwtToken)
                 .build();
 
     }

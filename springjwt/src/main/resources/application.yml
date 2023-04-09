@@ -2,14 +2,23 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/spring_jwt
     username: db_user
-    password:
+    password: 2211
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: 'create-drop'
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+application:
+  security:
+    jwt:
+      secret-key: 25442A472D4B6150645367566B59703373357638792F423F4528482B4D625165
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
